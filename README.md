@@ -56,3 +56,5 @@ pip install -r app/requirements.txt
 ✅ .env 환경변수 관리
 
 ✅ DB 및 Redis 연결 테스트 API 포함
+
+
