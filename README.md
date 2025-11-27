@@ -8,6 +8,9 @@ Python 3.12.10 로컬 개발환경에서도 사용할 수 있도록 구성하는
 ### 🐳 Docker Compose 실행
 ```bash
 docker-compose up --build
+🚀 demon 실행
+docker-compose up --build -d
+docker-compose down
 🚀 FastAPI 서버 접속
 
 FastAPI:
