@@ -45,10 +45,10 @@ venv\Scripts\activate
 pip install -r app/requirements.txt
 
 리눅스 실행
-uvicorn app.main:app --host 0.0.0.0 --port 8000
+uvicorn amain:app --host 0.0.0.0 --port 8000
 
 윈도우 cmd 실행
-start /min uvicorn app.main:app --host 0.0.0.0 --port 8000
+start /min uvicorn main:app --host 0.0.0.0 --port 8000
 
 📌 3. 구성 완료 (Features)
 

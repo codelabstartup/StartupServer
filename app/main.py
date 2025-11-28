@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-# import aiomysql
+import aiomysql
 # import redis.asyncio as redis
 import os
 from fastapi.staticfiles import StaticFiles
@@ -16,6 +16,7 @@ app = FastAPI()
 #     return "start page ok ..!!"
 # 정적 파일 제공 (CSS/JS/이미지)
 app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/assets", StaticFiles(directory="static/assets"), name="assets")
 
 # Redis
 # redis_client = redis.from_url(os.getenv("REDIS_URL"))
@@ -24,7 +25,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 @app.get("/")
 def root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse("index2.html", {"request": request})
 
 
 # # MySQL 연결 테스트
