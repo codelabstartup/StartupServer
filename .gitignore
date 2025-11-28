@@ -1,0 +1,9 @@
+_data/mysql/mysql.sock
+
+_data/mysql/ib_logfile*
+
+_data/mysql/binlog.index
+
+_data/mysql/*.pid
+
+_data/mysql/*.err
