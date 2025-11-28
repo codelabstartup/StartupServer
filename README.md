@@ -5,6 +5,8 @@ Python 3.12.10 로컬 개발환경에서도 사용할 수 있도록 구성하는
 
 ## 📌 1. 실행 방법
 
+📌 윈도우 환경이면 Docker Desktop이 실행 되어있어야 한다.
+
 ### 🐳 Docker Compose 실행
 ```bash
 docker-compose up --build
@@ -45,10 +47,10 @@ venv\Scripts\activate
 pip install -r app/requirements.txt
 
 리눅스 실행
-uvicorn amain:app --host 0.0.0.0 --port 8000
+uvicorn main:app --host 0.0.0.0 --port 8001
 
 윈도우 cmd 실행
-start /min uvicorn main:app --host 0.0.0.0 --port 8000
+start /min uvicorn main:app --host 0.0.0.0 --port 8001
 
 📌 3. 구성 완료 (Features)
 

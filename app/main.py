@@ -7,6 +7,7 @@ from starlette.requests import Request
 from fastapi.templating import Jinja2Templates
 from starlette.responses import HTMLResponse, RedirectResponse
 from db import bbs_db as db
+from fastapi.responses import JSONResponse
 
 
 app = FastAPI()
@@ -26,6 +27,30 @@ templates = Jinja2Templates(directory="templates")
 @app.get("/")
 def root(request: Request):
     return templates.TemplateResponse("index2.html", {"request": request})
+
+@app.get("/.well-known/appspecific/com.chrome.devtools.json")
+async def chrome_devtools_config():
+    return JSONResponse(
+        content={
+            "Browser": "FastAPI-DevTools/1.0",
+            "Protocol-Version": "1.3",
+            "User-Agent": "FastAPI Server",
+            "V8-Version": "0.0",
+            "WebKit-Version": "0.0",
+            "webSocketDebuggerUrl": "ws://127.0.0.1:8001/devtools",
+            "targets": [
+                {
+                    "description": "FastAPI Debug Target",
+                    "devtoolsFrontendUrl": "chrome-devtools://devtools/bundled/inspector.html",
+                    "id": "fastapi-debug-1",
+                    "title": "FastAPI App",
+                    "type": "page",
+                    "url": "http://localhost:8001",
+                    "webSocketDebuggerUrl": "ws://127.0.0.1:8001/devtools/page/fastapi-debug-1"
+                }
+            ]
+        }
+    )
 
 
 # # MySQL 연결 테스트
