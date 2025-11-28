@@ -36,13 +36,19 @@ Port: 6379
 Docker 컨테이너 외에도 로컬 환경에서 직접 FastAPI 실행이 가능합니다.
 
 🔧 Python 가상환경 생성
-python3.12 -m venv venv
+python -m venv venv
 
 Windows
 venv\Scripts\activate
 
 패키지 설치
 pip install -r app/requirements.txt
+
+리눅스 실행
+uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+윈도우 cmd 실행
+start /min uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 📌 3. 구성 완료 (Features)
 
@@ -59,5 +65,15 @@ pip install -r app/requirements.txt
 ✅ .env 환경변수 관리
 
 ✅ DB 및 Redis 연결 테스트 API 포함
+
+📌 4. env 파일 설정
+
+✅ .env_backup 을 복사해서 .env파일로 만든다.
+
+✅ mysql, redis 파일 경로를 PC 환경에 맞게 주정 : GIT_PATH=D:/_startupproject/StartupServer
+
+✅ docker compose 로 docker 를 구성한다.
+
+
 
 
