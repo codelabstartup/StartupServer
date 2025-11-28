@@ -8,9 +8,25 @@ from fastapi.templating import Jinja2Templates
 from starlette.responses import HTMLResponse, RedirectResponse
 from db import bbs_db as db
 from fastapi.responses import JSONResponse
-
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+# -----------------------
+# CORS 설정
+# -----------------------
+origins = [
+    "*"  # 개발용: 모든 도메인 허용
+    # "http://localhost:3000",   # 프론트엔드 도메인 예시
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,           # 허용할 도메인
+    allow_credentials=True,          # 쿠키, 인증 정보 허용
+    allow_methods=["*"],             # 모든 HTTP 메서드 허용
+    allow_headers=["*"],             # 모든 헤더 허용
+)
 
 # @app.get("/")
 # def root():
