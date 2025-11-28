@@ -8,6 +8,7 @@ Python 3.12.10 로컬 개발환경에서도 사용할 수 있도록 구성하는
 📌 윈도우 환경이면 Docker Desktop이 실행 되어있어야 한다.
 
 ### 🐳 Docker Compose 실행
+
 ```bash
 docker-compose up --build
 🚀 demon 실행
@@ -77,5 +78,17 @@ start /min uvicorn main:app --host 0.0.0.0 --port 8001
 ✅ docker compose 로 docker 를 구성한다.
 
 
+📌 5. db 파일 : startupdb 데이터베이스 파일 자동 인식하기 위한 내용
 
+✅ _data/mysql/ 폴더 밑에 있는 잘라내서 다른 곳에 저장한다.
+ibdata1
+undo_001
+undo_002
+ibtmp1
+startupdb/ 폴더 내 전체 파일 table를 생성하면 이곳에 파일이 생긴다.
 
+✅ docker compose 명령으로 컨테이너 생성
+
+✅ 다른곳에 저장했던 파일들을 _data/mysql/ 폴더 밑에 덮어쓴다.
+
+```
