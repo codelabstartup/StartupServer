@@ -18,6 +18,8 @@ services:
   mysql:
     image: mysql:8.0.44
     container_name: startup_mysql
+    env_file:
+      - .env
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -32,6 +34,8 @@ services:
   redis:
     image: redis:7.2
     container_name: redstartup_redisis_server
+    env_file:
+      - .env
     restart: always
     ports:
       - "6379:6379"
