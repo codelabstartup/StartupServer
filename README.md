@@ -3,6 +3,14 @@ Python 3.12.10 로컬 개발환경에서도 사용할 수 있도록 구성하는
 
 ---
 
+## 📌 vccode debuge 세팅에 대해서
+
+✅ Dockerfile, docker-compose.yml - 디버그로 사용되는 파일입니다. 
+
+✅ 디버그 없이 사용하기 위해서는 : 기존 Dockerfile, docker-compose.yml 을 -> Dockerfile_debugback, docker-compose.yml_debugback 로 변경 후
+
+✅ Dockerfile_backup, docker-compose.yml_back 를 Dockerfile, docker-compose.yml 변경하고 docker compose를 실행하면 된다.
+
 ## 📌 1. 실행 방법
 
 📌 윈도우 환경이면 Docker Desktop이 실행 되어있어야 한다.
@@ -90,5 +98,6 @@ startupdb/ 폴더 내 전체 파일 table를 생성하면 이곳에 파일이 �
 ✅ docker compose 명령으로 컨테이너 생성
 
 ✅ 다른곳에 저장했던 파일들을 _data/mysql/ 폴더 밑에 덮어쓴다.
+
 
 ```
