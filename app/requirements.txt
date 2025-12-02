@@ -4,3 +4,4 @@ mysql-connector-python
 redis
 python-dotenv
 jinja2
+pymysql

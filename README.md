@@ -59,7 +59,7 @@ pip install -r app/requirements.txt
 uvicorn main:app --host 0.0.0.0 --port 8001
 
 윈도우 cmd 실행
-start /min uvicorn main:app --host 0.0.0.0 --port 8001
+uvicorn main:app --host 0.0.0.0 --port 8001
 
 📌 3. 구성 완료 (Features)
 
@@ -67,7 +67,7 @@ start /min uvicorn main:app --host 0.0.0.0 --port 8001
 
 ✅ FastAPI 개발 서버 (Python 3.12.10)
 
-✅ MySQL 8.0
+✅ MySQL 8.0.44
 
 ✅ Redis 7.2
 
