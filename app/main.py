@@ -7,8 +7,7 @@ from fastapi.templating import Jinja2Templates
 from starlette.responses import HTMLResponse, RedirectResponse
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from routes.dbroute import router as mysql_router
-from routes.redisroute import router as redis_router
+from routes.ai import router as ai_router
 
 app = FastAPI()
 
@@ -28,18 +27,12 @@ app.add_middleware(
     allow_headers=["*"],             # 모든 헤더 허용
 )
 
-# @app.get("/")
-# def root():
-#     return "start page ok ..!!"
+
 # 정적 파일 제공 (CSS/JS/이미지)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount("/assets", StaticFiles(directory="static/assets"), name="assets")
 
-app.include_router(mysql_router, prefix="/mysql", tags=["Mysql"])
-app.include_router(redis_router, prefix="/redis", tags=["Redis"])
-
-# Redis
-# redis_client = redis.from_url(os.getenv("REDIS_URL"))
+app.include_router(ai_router, prefix="/ai", tags=["AI"])
 
 
 templates = Jinja2Templates(directory="templates")
