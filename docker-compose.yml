@@ -6,6 +6,7 @@ services:
     container_name: fastapi_app
     ports:
       - "${APP_PORT}:8000"
+      - "5678:5678"
     volumes:
       - "${GIT_PATH}/app:/app"
     env_file:
