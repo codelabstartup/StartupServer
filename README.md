@@ -5,7 +5,7 @@ Python 3.12.10 로컬 개발환경에서도 사용할 수 있도록 구성하는
 
 ## 📌 vccode debuge 세팅에 대해서
 
-✅ Dockerfile, docker-compose.yml - 디버그로 사용되는 파일입니다. 
+✅ Dockerfile, docker-compose.yml - 디버그로 사용되는 파일입니다.
 
 ✅ 디버그 없이 사용하기 위해서는 : 기존 Dockerfile, docker-compose.yml 을 -> Dockerfile_debugback, docker-compose.yml_debugback 로 변경 후
 
@@ -99,5 +99,30 @@ startupdb/ 폴더 내 전체 파일 table를 생성하면 이곳에 파일이 �
 
 ✅ 다른곳에 저장했던 파일들을 _data/mysql/ 폴더 밑에 덮어쓴다.
 
+
+📌 6. db 파일 import
+🚀
+mysql.exe -h 127.0.0.1 -P 3308 -u root -p startupdb < "D:\_StartupProject\StartupServer\_dbtablesql\startupdb_age_gender_sales.sql"
+🚀
+mysql.exe -h 127.0.0.1 -P 3308 -u root -p startupdb < "D:\_StartupProject\StartupServer\_dbtablesql\startupdb_ai_suggest_result.sql"
+🚀
+mysql.exe -h 127.0.0.1 -P 3308 -u root -p startupdb < "D:\_StartupProject\StartupServer\_dbtablesql\startupdb_commercial_area_infra.sql"
+🚀
+mysql.exe -h 127.0.0.1 -P 3308 -u root -p startupdb < "D:\_StartupProject\StartupServer\_dbtablesql\startupdb_dong_code_master.sql"
+🚀
+mysql.exe -h 127.0.0.1 -P 3308 -u root -p startupdb < "D:\_StartupProject\StartupServer\_dbtablesql\startupdb_float_populat.sql"
+🚀
+mysql.exe -h 127.0.0.1 -P 3308 -u root -p startupdb < "D:\_StartupProject\StartupServer\_dbtablesql\startupdb_quarter_sales.sql"
+🚀
+mysql.exe -h 127.0.0.1 -P 3308 -u root -p startupdb < "D:\_StartupProject\StartupServer\_dbtablesql\startupdb_store_status_info.sql"
+🚀
+mysql.exe -h 127.0.0.1 -P 3308 -u root -p startupdb < "D:\_StartupProject\StartupServer\_dbtablesql\startupdb_svc_industry_code.sql"
+🚀
+mysql.exe -h 127.0.0.1 -P 3308 -u root -p startupdb < "D:\_StartupProject\StartupServer\_dbtablesql\startupdb_year_quarter_code.sql"
+
+🚀 bat 파일로 import
+ - import_startupdb.bat
+ - 파일 위치 수정
+ - create_startupdb.sql를 같이 넣을 지 결정
 
 ```
