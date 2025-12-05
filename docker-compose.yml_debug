@@ -30,6 +30,7 @@ services:
       - "${MYSQL_PORT}:3306"
     volumes:
       - "${GIT_PATH}/_data/mysql:/var/lib/mysql"
+      - "${SQL_PATH}:/docker-entrypoint-initdb.d"   # SQL 자동 로드
 
   redis:
     image: redis:7.2

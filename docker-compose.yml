@@ -17,25 +17,28 @@ services:
   mysql:
     image: mysql:8.0.44
     container_name: startup_mysql
+    restart: always
     env_file:
       - .env
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
     ports:
       - "${MYSQL_PORT}:3306"
+
     volumes:
       - "${GIT_PATH}/_data/mysql:/var/lib/mysql"
+      - "${SQL_PATH}:/docker-entrypoint-initdb.d"
 
   redis:
     image: redis:7.2
-    container_name: redstartup_redisis_server
+    container_name: startup_redis_server
+    restart: always
     env_file:
       - .env
-    restart: always
     ports:
       - "6379:6379"
     command: ["redis-server", "--appendonly", "yes"]
