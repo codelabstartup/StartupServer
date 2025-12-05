@@ -31,7 +31,7 @@ services:
 
     volumes:
       - "${GIT_PATH}/_data/mysql:/var/lib/mysql"
-      - "${SQL_PATH}:/docker-entrypoint-initdb.d"
+      # - "${SQL_PATH}:/docker-entrypoint-initdb.d"
 
   redis:
     image: redis:7.2
