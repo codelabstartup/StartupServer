@@ -123,6 +123,7 @@ mysql.exe -h 127.0.0.1 -P 3308 -u root -p startupdb < "D:\_StartupProject\Startu
 🚀 bat 파일로 import
  - import_startupdb.bat
  - 파일 위치 수정
- - create_startupdb.sql를 같이 넣을 지 결정
+ - create_startupdb.sql를 같이 넣을 지 결정ㅜㅜ
+
 
 ```
