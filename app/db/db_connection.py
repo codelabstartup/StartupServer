@@ -33,8 +33,12 @@ def get_connection():
     return pymysql.connect(
         host=host,
         port=int(port),
-        user=MYSQL_USER,
-        passwd=MYSQL_PASSWORD,
+        user='root',
+        passwd='root1234',
         db=MYSQL_DATABASE,
         # charset="utf8"
     )
+
+
+if __name__ == "__main__":
+    print(get_connection())

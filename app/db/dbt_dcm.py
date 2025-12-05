@@ -1,8 +1,8 @@
 # db_crud.py
-from routes.db_connection import get_connection
+from db.db_connection import get_connection
 from pymysql import IntegrityError
 
-MYSQL_TABLE = "member"
+MYSQL_TABLE = "dong_code_master"
 
 # -------------------------
 # CREATE
@@ -54,7 +54,8 @@ def read_all(limit=10):
     except Exception as e:
         print("전체 조회 오류:", e)
     finally:
-        con.close()
+        if con:
+            con.close()
 
 
 # -------------------------
