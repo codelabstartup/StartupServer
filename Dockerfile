@@ -12,3 +12,4 @@ RUN apt-get update && apt-get install -y build-essential \
 COPY app /app
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+# CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload", "--log-level", "critical", "--no-access-log"]
