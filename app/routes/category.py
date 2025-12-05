@@ -1,13 +1,10 @@
 from fastapi import APIRouter
-from db.dbt_dcm import read_all
-import os
+from db.dbt_sic import read_category
 
 router = APIRouter()
 
 @router.get("/")
-def ai_root():
-    result = read_all()
-    # result = "This is a placeholder response from the AI route."
-    return {
-        "ai": result,
-    }
+def select_category():
+    category_list = read_category()
+    print("업종 리스트;", category_list)
+    return category_list
