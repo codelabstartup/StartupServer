@@ -33,6 +33,7 @@ app.add_middleware(
 # 정적 파일 제공 (CSS/JS/이미지)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount("/assets", StaticFiles(directory="static/assets"), name="assets")
+app.mount("/src", StaticFiles(directory="src"), name="src")
 
 app.include_router(ai_router, prefix="/ai", tags=["AI"])
 app.include_router(gu_router, prefix="/gu", tags=["GU"])
@@ -42,7 +43,7 @@ app.include_router(category_router, prefix="/category", tags=["Category"])
 templates = Jinja2Templates(directory="templates")
 @app.get("/")
 def root(request: Request):
-    return templates.TemplateResponse("index2.html", {"request": request})
+    return templates.TemplateResponse("index4.html", {"request": request})
 
 @app.get("/.well-known/appspecific/com.chrome.devtools.json")
 async def chrome_devtools_config():
