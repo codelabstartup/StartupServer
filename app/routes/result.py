@@ -1,6 +1,8 @@
 from fastapi import APIRouter
 from db.dbt_result import read_qs, read_ags
-from db.dbt_ags import read_fp
+from db.dbt_fp import read_fp
+from db.dbt_ssi import read_ssi
+from db.dbt_cai import read_cai
 
 
 router = APIRouter()
@@ -11,6 +13,8 @@ def result(gu: str, dong: str, category: str):
     qs_result = read_qs(body)
     ags_result = read_ags(body)
     fp_result = read_fp(body)
-    return qs_result, ags_result, fp_result
+    ssi_result = read_ssi(body)
+    cai_result = read_cai(body)
+    return qs_result, ags_result, fp_result, ssi_result, cai_result
 
 
