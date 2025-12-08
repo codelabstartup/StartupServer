@@ -19,7 +19,8 @@ app = FastAPI()
 # -----------------------
 origins = [
     "*"  # 개발용: 모든 도메인 허용
-    # "http://localhost:3000",   # 프론트엔드 도메인 예시
+    "http://localhost:8000",   # 프론트엔드 도메인 예시
+    "http://127.0.0.1:8000"
 ]
 
 app.add_middleware(

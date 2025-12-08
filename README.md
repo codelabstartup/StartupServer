@@ -128,5 +128,8 @@ mysql.exe -h 127.0.0.1 -P 3308 -u root -p startupdb < "D:\_StartupProject\Startu
 🚀 mysql 암호화 그냥 입력으로 쓰겠다 패키지 설치
  cryptography
 
+📌 6. ERROR exporting to image => 캐시 때문에 COPY 단계가 잘못된 상태에서 계속 재사용 가능성
+ docker build --no-cache -t myfastapi .
+
 
 ```
