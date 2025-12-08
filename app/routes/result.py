@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from db.dbt_result import read_sales 
-# from db.dbt_result import read_age
+from db.dbt_result import read_age
 from db.dbt_result import read_pop
 
 router = APIRouter()
