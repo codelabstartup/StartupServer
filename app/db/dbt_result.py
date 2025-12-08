@@ -2,7 +2,7 @@ from db.db_connection import get_connection
 from pymysql import IntegrityError
 
 
-def read_sales(body):
+def read_qs(body):
     try:
         con = get_connection()
         cursor = con.cursor()
@@ -20,11 +20,11 @@ def read_sales(body):
             con.close()
             
             
-def read_pop(body):
+def read_ags(body):
     try:
         con = get_connection()
         cursor = con.cursor()
-        sql = "SELECT fp_total, yqc_code FROM float_populat WHERE dcm_code = (SELECT dcm_code FROM dong_code_master WHERE dcm_gu = %s AND dcm_dong = %s) order by yqc_code"
+        sql = "SELECT ags_male, ags_female, yqc_code FROM age_gender_sales WHERE dcm_code = (SELECT dcm_code FROM dong_code_master WHERE dcm_gu = %s AND dcm_dong = %s) order by yqc_code"
         cursor.execute(sql, (body["gu"], body["dong"]))
         rows = cursor.fetchall()
         columns = [col[0] for col in cursor.description]
