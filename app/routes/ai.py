@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-# from routes.dbt_member import read_one
 import os
+# from catboost import CatBoostClassifier
 
 router = APIRouter()
 
@@ -11,3 +11,8 @@ def ai_root():
     return {
         "ai": result,
     }
+    
+    
+if __name__ == '__main__':
+    st = "ai.py"
+    print(st)
