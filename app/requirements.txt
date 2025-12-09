@@ -7,3 +7,6 @@ jinja2
 pymysql
 cryptography
 django-cors-headers
+lightgbm
+numpy
+pandas

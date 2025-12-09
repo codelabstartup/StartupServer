@@ -4,10 +4,17 @@ WORKDIR /app
 
 COPY app/requirements.txt /app/requirements.txt
 
-RUN apt-get update && apt-get install -y build-essential \
+# LightGBM 빌드를 위한 패키지 설치
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    cmake \
+    libomp-dev \
+    libgomp1 \
     && pip install --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt \
-    && apt-get remove -y build-essential && apt-get autoremove -y
+    && apt-get remove -y build-essential cmake \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY app /app
 
