@@ -12,15 +12,15 @@ from routes.gu import router as gu_router
 from routes.category import router as category_router
 from routes.result import router as result_router
 
+
 app = FastAPI()
 
 # -----------------------
 # CORS 설정
 # -----------------------
 origins = [
-    "*"  # 개발용: 모든 도메인 허용
-    "http://localhost:8000",   # 프론트엔드 도메인 예시
-    "http://127.0.0.1:8000"
+    "http://localhost:5173",   # 프론트엔드 도메인 예시
+    "http://127.0.0.1:5173"
 ]
 
 app.add_middleware(
