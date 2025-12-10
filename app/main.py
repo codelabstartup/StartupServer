@@ -7,7 +7,7 @@ from fastapi.templating import Jinja2Templates
 from starlette.responses import HTMLResponse, RedirectResponse
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from routes.ai import router as ai_router
+from routes.ai_router import router as ai_router
 from routes.gu import router as gu_router
 from routes.category import router as category_router
 from routes.result import router as result_router
