@@ -6,16 +6,16 @@ import joblib
 import numpy as np
 import lightgbm as lgb
 
-# MODEL_PATH = os.path.join(os.path.dirname(__file__), "../model/lgb_model_p2.pkl")
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODEL_PATH = os.path.join(BASE_DIR, "model/lgb_model_p2.pkl")
 
 def load_lgb_model():
     try:
-        print("모델 로드 중...")
-        # with open('lgb_model_p2.pkl', "rb") as f:
-        print("변경된 프린트2")
-        model = joblib.load('model/lgb_model_p2.pkl')
-        # model = joblib.load('lgb_model_p2.pkl')
-        return model
+        with open(MODEL_PATH, "rb") as f:
+            model = joblib.load(f)
+            return model
+        # model = joblib.load('model/lgb_model_p2.pkl')
+        # return model
     except Exception as e:
         print("모델 로드 오류:", e)
         return None
