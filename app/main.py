@@ -11,26 +11,25 @@ from routes.ai import router as ai_router
 from routes.gu import router as gu_router
 from routes.category import router as category_router
 from routes.result import router as result_router
+from dotenv import load_dotenv
 
+# .env 파일 로드
+load_dotenv()
 
 app = FastAPI()
 
 # -----------------------
 # CORS 설정
 # -----------------------
-origins = [
-    "http://localhost:5173",   # 프론트엔드 도메인 예시
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
-    "http://127.0.0.1:5173"
-]
+# .env에서 읽어서 리스트 형태로 변환
+origins = os.getenv("CORS_ORIGINS", "").split(",")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,           # 허용할 도메인
-    allow_credentials=True,          # 쿠키, 인증 정보 허용
-    allow_methods=["*"],             # 모든 HTTP 메서드 허용
-    allow_headers=["*"],             # 모든 헤더 허용
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
