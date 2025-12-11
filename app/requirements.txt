@@ -10,3 +10,5 @@ django-cors-headers
 lightgbm
 numpy
 pandas
+joblib
+scikit-learn
