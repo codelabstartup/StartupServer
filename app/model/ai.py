@@ -3,8 +3,9 @@ import sys
 # sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import db.dbt_afn as dbt_afn
 import joblib
-import numpy as np
 import lightgbm as lgb
+import pandas as pd
+import numpy as np
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODEL_PATH = os.path.join(BASE_DIR, "model/lgb_model_p2.pkl")
@@ -20,7 +21,7 @@ def load_lgb_model():
         print("모델 로드 오류:", e)
         return None
 
-def make_feature_array(feature_dict):
+def make_feature_df(feature_dict):
     feature_order = [
         "qs_log", "qs_per_store", "qs_total_diff_sqrt", "store_density",
         "comp_pres", "comp_pres_pct", "qs_per_store_pct", "store_density_pct",
@@ -29,11 +30,14 @@ def make_feature_array(feature_dict):
         "fp_log", "wp_log", "rp_log", "subway_station", "bus_log",
         "traffic_score", "apt_cnt", "apt_log"
     ]
-    print("Feature Dict:", feature_dict)
-    # 순서에 맞게 리스트 생성
+
+    # 순서에 맞는 값 생성
     values = [feature_dict.get(key, 0) for key in feature_order]
-    
-    return np.array(values).reshape(1, -1)  # LightGBM 입력 형태
+
+    # ⭐ DataFrame으로 반환 (feature names 포함)
+    df = pd.DataFrame([values], columns=feature_order)
+
+    return df
 
 def predict_sales(body):
     # 1) Feature 조회
@@ -46,7 +50,7 @@ def predict_sales(body):
     feature = feature_list[0]   # 첫 번째 row 사용
 
     # 2) feature → numpy 변환
-    feature_array = make_feature_array(feature)
+    feature_array = make_feature_df(feature)
 
     # 3) 모델 로드
     model = load_lgb_model()

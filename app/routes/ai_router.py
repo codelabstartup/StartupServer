@@ -8,6 +8,7 @@ router = APIRouter()
 def ai_root(gu: str, dong: str, category: str):
     body = {"gu": gu, "dong": dong, "category": category}
     result = ai.predict_sales(body)
+    print("AI Result:", result)
     return {
         "ai": result,
     }
