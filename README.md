@@ -131,5 +131,9 @@ mysql.exe -h 127.0.0.1 -P 3308 -u root -p startupdb < "D:\_StartupProject\Startu
 📌 6. ERROR exporting to image => 캐시 때문에 COPY 단계가 잘못된 상태에서 계속 재사용 가능성
  docker build --no-cache -t myfastapi .
 
+📌 6. 캐쉬에러
+![캐시 에러 화면](imags_readme/error1_image.png)
+ docker system prune -a
+
 
 ```
