@@ -28,19 +28,37 @@ def insight_ps_one(ip_id):
   try:
     con = get_connection()
     cursor = con.cursor()
+    
+    # 1) 조회수 1 증가
+    update_sql = f"""
+        UPDATE {MYSQL_TABLE}
+        SET ip_view_count = ip_view_count + 1
+        WHERE ip_id = %s
+    """
+    cursor.execute(update_sql, (ip_id,))
+    con.commit()   # UPDATE 했으면 커밋
+    
+    # 2) 증가된 값 포함해서 다시 조회
     sql = f"""
         SELECT ip_id, ip_title, ip_content, ip_writer,
                ip_view_count, ip_created_at
-        FROM {MYSQL_TABLE} WHERE ip_id = %s
+        FROM {MYSQL_TABLE}
+        WHERE ip_id = %s
     """
     cursor.execute(sql, (ip_id,))
     row = cursor.fetchone()
+    
+    if not row:
+        return None
+      
     columns = [col[0] for col in cursor.description]
     result_ps = dict(zip(columns,row))
     return result_ps
+  
   except Exception as e:
-    print("게시판 상세 페이지 오류:", e)
-    return[]
+    print("게시글 조회 (+ 조회수 증가) 오류:", e)
+    return None
+  
   finally:
     if con:
       con.close()
@@ -65,6 +83,31 @@ def insight_ps_write(title, writer, content, password):
   except Exception as e:
         print("게시판 글 쓰기 오류:", e)
         return None
+
+  finally:
+        if con:
+            con.close()
+            
+def insight_ps_delete(ip_id, password):
+  con = None
+  try:
+        con = get_connection()
+        cursor = con.cursor()
+
+        sql = f"""
+            DELETE FROM {MYSQL_TABLE}
+            WHERE ip_id = %s AND ip_pw = %s
+        """
+        # 삭제 게시글 넘버, 비밀번호
+        cursor.execute(sql, (ip_id, password))
+        con.commit()
+
+        # 삭제된 행 개수 반환 (0이면 삭제 안된 것)
+        return cursor.rowcount
+
+  except Exception as e:
+        print("게시판 글 삭제 오류:", e)
+        return 0
 
   finally:
         if con:
