@@ -26,7 +26,7 @@ def ai_predict(
             detail="해당 구/동/업종에 대한 피처 데이터를 찾을 수 없습니다.",
         )
 
-     # 2) 예측
+    # 2) 예측
     try:
         pred = predict_growth_label(
         feature_row=feature_row,

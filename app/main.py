@@ -11,6 +11,8 @@ from routes.ai import router as ai_router
 from routes.gu import router as gu_router
 from routes.category import router as category_router
 from routes.result import router as result_router
+from routes.status import router as status_router
+from routes.status_map import router as status_map_router
 
 
 app = FastAPI()
@@ -43,6 +45,8 @@ app.include_router(ai_router, prefix="/ai", tags=["AI"])
 app.include_router(gu_router, prefix="/gu", tags=["GU"])
 app.include_router(category_router, prefix="/category", tags=["Category"])
 app.include_router(result_router, prefix="/result", tags=["Result"])
+app.include_router(status_router, prefix="/status", tags=["Status"])
+app.include_router(status_map_router, prefix="/status_map", tags=["StatusMap"])
 
 
 templates = Jinja2Templates(directory="templates")
