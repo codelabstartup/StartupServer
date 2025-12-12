@@ -62,7 +62,8 @@ def insight_ps_one(ip_id):
   finally:
     if con:
       con.close()
-      
+
+# write 글쓰기 함수 
 def insight_ps_write(title, writer, content, password):
   try:
         con = get_connection()
@@ -87,7 +88,8 @@ def insight_ps_write(title, writer, content, password):
   finally:
         if con:
             con.close()
-            
+
+# delete 게시글 삭제 함수
 def insight_ps_delete(ip_id, password):
   con = None
   try:
@@ -112,8 +114,36 @@ def insight_ps_delete(ip_id, password):
   finally:
         if con:
             con.close()
+
+# Update 게시글 수정 함수
+def insight_ps_update(ip_id, title, content, password):
+  try:
+    con = get_connection()
+    cursor = con.cursor()
     
-      
+    sql = f"""
+      UPDATE {MYSQL_TABLE}
+      SET ip_title = %s,
+          ip_content = %s
+      WHERE ip_id = %s
+        AND ip_pw = %s
+    """
+    cursor.execute(sql,(title, content, ip_id, password))
+    con.commit()
+    
+    # 영향 받은 row 수 (0이면 실패)
+    return cursor.rowcount
+  
+  except Exception as e:
+    print("게시판 글 수정 오류:", e)
+    return 0
+  
+  finally:
+      if con:
+          con.close()
+  
+  
+  
 
 
     

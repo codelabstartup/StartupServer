@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Request
-from db.dbt_ip import insight_ps, insight_ps_write, insight_ps_one, insight_ps_delete
+from db.dbt_ip import insight_ps, insight_ps_write, insight_ps_one, insight_ps_delete, insight_ps_update
 
 router = APIRouter()
 
@@ -14,7 +14,6 @@ def select_bd_one(ip_id:int):
   bd_one = insight_ps_one(ip_id)
   print("게시판 리스트;", bd_one)
   return bd_one
-
 
 @router.post("/write")
 async def write_bd_one(request: Request):
@@ -65,4 +64,26 @@ async def delete_post(ip_id: int, request: Request):
       )
 
     return {"message": "삭제 완료"}
+  
+@router.put("/{ip_id}")
+async def update_post(ip_id: int, request : Request):
+    data = await request.json()
+  
+    title = data.get("title")
+    content = data.get("content")
+    password = data.get("password")
+  
+  # 1) 값이 비어 있으면 400
+    if not title or not content or not password:
+        raise HTTPException(status_code=400, detail="필수 항목이 누락되었습니다.")
+  
+  # 2) 실제 DB 수정
+    updated_rows = insight_ps_update(ip_id, title, content,password)
+  
+    if updated_rows == 0:
+    # 글이 없거나 비밀번호가 틀린 경우
+      raise HTTPException(status_code=403, detail="비밀번호가 일치하지 않거나 글이 존재하지 않습니다.")
+  
+    return {"message": "수정 완료"}
+  
 
